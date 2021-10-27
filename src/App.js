@@ -46,10 +46,10 @@ function App() {
             <TableCell align="right">밥 먹은 날</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody data-testid={"list"}>
           {babList.map((bab) => (
             <TableRow
-              key={bab._id}
+              key={bab.idx}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
