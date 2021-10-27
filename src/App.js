@@ -40,6 +40,7 @@ function App() {
           <TableRow>
             <TableCell>신규입사자</TableCell>
             <TableCell align="right">같이 밥 먹은 팀원</TableCell>
+            <TableCell align="right">출근한 팀원들</TableCell>
             <TableCell align="right">밥 먹은 날</TableCell>
           </TableRow>
         </TableHead>
@@ -52,6 +53,7 @@ function App() {
               <TableCell component="th" scope="row">
                 {bab.newMember}
               </TableCell>
+              <TableCell align="right">{bab.resultMember}</TableCell>
               <TableCell align="right">{bab.targetMember}</TableCell>
               <TableCell align="right">{dayjs(bab.createdAt).format('YYYY-MM-DD HH:mm:ss')}</TableCell>
             </TableRow>
