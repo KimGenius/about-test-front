@@ -5,8 +5,8 @@ import axios from "axios"
 import dayjs from "dayjs"
 
 function App() {
-  let [name, setName] = useState([])
-  let [content, setContent] = useState([])
+  let [name, setName] = useState('')
+  let [content, setContent] = useState('')
   let [boards, setBoards] = useState([])
   useEffect(() => {
     getBoards()
