@@ -32,8 +32,10 @@ function App() {
   }
   return (
     <div className="App">
-      <TextField id="standard-basic" label="신규 입사자" value={newMember} onChange={e => setNewMember(e.target.value)}/>
-      <TextField id="standard-basic" label="출근자 리스트" value={targetMember} onChange={e => setTargetMember(e.target.value)} />
+      <TextField size={'small'} id="standard-basic" label="신규 입사자" value={newMember} onChange={e => setNewMember(e.target.value)}/>
+      <TextField size={'small'} id="standard-basic" label="출근자 리스트" value={targetMember} onChange={e => setTargetMember(e.target.value)} style={{
+        width: '60vw'
+      }}/>
       <Button onClick={() => babWithNewMember()}>밥 머거</Button>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
