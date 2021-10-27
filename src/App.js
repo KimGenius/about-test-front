@@ -5,50 +5,55 @@ import axios from "axios"
 import dayjs from "dayjs"
 
 function App() {
-  let [name, setName] = useState('')
-  let [content, setContent] = useState('')
-  let [boards, setBoards] = useState([])
+  let [newMember, setNewMember] = useState('')
+  let [targetMember, setTargetMember] = useState('')
+  let [babList, setBabList] = useState([])
   useEffect(() => {
-    getBoards()
+    getBabHistory()
   }, [])
 
-  async function getBoards() {
-    const url = "http://localhost:5000/boards"
+  async function getBabHistory() {
+    const url = "http://localhost:5000/bab"
     const { data } = await axios.get(url)
-    setBoards(data)
+    setBabList(data)
   }
 
-  async function createBoard() {
-    const url = "http://localhost:5000/boards"
-    await axios.post(url, {
-      name, content
-    })
-    getBoards()
+  async function babWithNewMember() {
+    const url = "http://localhost:5000/bab"
+    try {
+      const result = await axios.post(url, {
+        newMember, targetMember
+      })
+      console.log(result)
+      getBabHistory()
+    } catch (e) {
+      alert(e.response.data.message)
+    }
   }
   return (
     <div className="App">
-      <TextField id="standard-basic" label="이름" value={name} onChange={e => setName(e.target.value)}/>
-      <TextField id="standard-basic" label="내용" value={content} onChange={e => setContent(e.target.value)} />
-      <Button onClick={() => createBoard()}>게시글 등록</Button>
+      <TextField id="standard-basic" label="신규 입사자" value={newMember} onChange={e => setNewMember(e.target.value)}/>
+      <TextField id="standard-basic" label="출근자 리스트" value={targetMember} onChange={e => setTargetMember(e.target.value)} />
+      <Button onClick={() => babWithNewMember()}>밥 머거</Button>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>이름</TableCell>
-            <TableCell align="right">내용</TableCell>
-            <TableCell align="right">작성일</TableCell>
+            <TableCell>신규입사자</TableCell>
+            <TableCell align="right">같이 밥 먹은 팀원</TableCell>
+            <TableCell align="right">밥 먹은 날</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {boards.map((board) => (
+          {babList.map((bab) => (
             <TableRow
-              key={board._id}
+              key={bab._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {board.name}
+                {bab.newMember}
               </TableCell>
-              <TableCell align="right">{board.content}</TableCell>
-              <TableCell align="right">{dayjs(board.createdAt).format('YYYY-MM-DD HH:mm:ss')}</TableCell>
+              <TableCell align="right">{bab.targetMember}</TableCell>
+              <TableCell align="right">{dayjs(bab.createdAt).format('YYYY-MM-DD HH:mm:ss')}</TableCell>
             </TableRow>
           ))}
         </TableBody>
