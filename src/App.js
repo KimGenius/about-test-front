@@ -13,13 +13,13 @@ function App() {
   }, [])
 
   async function getBabHistory() {
-    const url = "http://localhost:5000/bab"
+    const url = "http://localhost:4000/bab"
     const { data } = await axios.get(url)
     setBabList(data)
   }
 
   async function babWithNewMember() {
-    const url = "http://localhost:5000/bab"
+    const url = "http://localhost:4000/bab"
     try {
       const result = await axios.post(url, {
         newMember, targetMember
