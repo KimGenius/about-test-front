@@ -19,8 +19,8 @@ function DataForm({getBabHistory}) {
   }
   return (
     <div>
-      <TextField size={'small'} id="standard-basic" label="신규 입사자" value={newMember} onChange={e => setNewMember(e.target.value)}/>
-      <TextField size={'small'} id="standard-basic" label="출근자 리스트" value={targetMember} onChange={e => setTargetMember(e.target.value)} style={{
+      <TextField className={'newMember'} size={'small'} id="standard-basic" label="신규 입사자" value={newMember} onChange={e => setNewMember(e.target.value)}/>
+      <TextField className={'targetMember'} size={'small'} id="standard-basic" label="출근자 리스트" value={targetMember} onChange={e => setTargetMember(e.target.value)} style={{
         width: '60vw'
       }}/>
       <Button onClick={() => babWithNewMember()}>밥 머거</Button>

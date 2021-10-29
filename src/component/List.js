@@ -16,6 +16,7 @@ function List({babList}) {
         <TableBody data-testid={"list"}>
           {babList.map((bab) => (
             <TableRow
+              className={'table-row'}
               key={bab.idx}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
